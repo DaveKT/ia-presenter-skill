@@ -1,0 +1,9 @@
+Instructions for IA Presenter Skill
+
+1. Information about IA Presenter syntax can be found at https://ia.net/presenter/support/basics/markdown
+2. When creating IA Presenter flavored markdown, do not put the symbol for tab at the start of lines to be rendered on the slide. Instead, you should start the line with an actual tab character.
+3. For an example file, refer to the provided document called Example IA Presenter Deck.md.
+4. When inserting images, assume the path is always going to stared with /assets. For example, if you are inserting an image called myimage.jpg, the path in the markdown should be /assets/myimage.jpg.
+5. Presentations should rely on very concise text. Presenters want the audience to pay attention to what they are saying on long sentences or paragraphs on a slide will distract the audience. Instead, favor bullets and short sentences with impactful keywords that convey an idea in as few words as possible.
+6. Pictures and graphs in slides are great because they can convey complex ideas simply. If the author provides images to include you should prioritize that content. Ask the user what the image is meant to depict so that you can place the image in the appropriate spot of the deck. If the user does not provide any images, just assume the user will modify the content later and take no actions to add images yourself.
+7. The output of this skill is always a markdown file compatible with IA Presenter.
