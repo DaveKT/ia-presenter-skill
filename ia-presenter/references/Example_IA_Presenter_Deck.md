@@ -37,7 +37,7 @@ size: contain
 The above line is rendering an image called 1_4runner-15000x.png on the slide. The contain modifier is ensuring the full image is rendered in the space provided.
 
 ---
-### Fourth and Final Content Page (Header 3)
+### Fourth Content Page (Header 3)
 	As the documentation suggests, you can use standard markdown to format the text. This is **bold** and this is *italic*.
 
 You can also insert a code block using backticks. You can optionally name the language being used after the first set of backticks.
@@ -47,3 +47,51 @@ Import pandas as pd
 
 print("Hello World!")
 ```
+
+---
+### Plain table
+
+|         | Series 1 | Series 2 |
+| :------ | :------- | :------- |
+| Group A | 10       | 15       |
+| Group B | 15       | 20       |
+| Group C | 25       | 30       |
+
+These are fictional example data.
+
+---
+### Line chart
+
+|         | Series 1 | Series 2 |
+| :------ | :------- | :------- |
+| Group A | 10       | 15       |
+| Group B | 15       | 20       |
+| Group C | 25       | 30       |
+chart: line
+
+These are fictional example data.
+
+---
+### Vertical bar chart
+
+|         | Series 1 | Series 2 |
+| :------ | :------- | :------- |
+| Group A | 10       | 15       |
+| Group B | 15       | 20       |
+| Group C | 25       | 30       |
+chart: bar
+Orientation: vertical
+
+These are fictional example data.
+
+---
+### Pie chart
+
+|         | Series 1 | Series 2 |
+| :------ | :------- | :------- |
+| Group A | 10       | 15       |
+| Group B | 15       | 20       |
+| Group C | 25       | 30       |
+chart: pie
+
+These are fictional example data.
