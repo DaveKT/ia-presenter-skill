@@ -38,6 +38,37 @@ Create side-by-side layouts by separating tabbed content with a non-tabbed line:
 
 Without the separator, content stacks vertically.
 
+### Line Breaks, Blank Slide Lines, and List Separation
+
+Use different syntax for these three cases:
+
+- To insert a line break inside one paragraph, end the preceding line with two spaces or a backslash (`\`). Keep the tab prefix on both lines when the paragraph must appear on the slide.
+- To create a visually blank line outside lists, insert a slide-content line containing exactly an actual tab character (`U+0009`) followed by an actual non-breaking space (`U+00A0`). Ordinary blank Markdown lines collapse in the HTML view and do not guarantee visible vertical space. Use the literal non-breaking space character, never an HTML entity spelling.
+- To separate consecutive lists, use a blank line, a tab-prefixed standalone backslash, and another blank line before the next list. This prevents the HTML view from treating the second list as a continuation of the first.
+
+The visually blank middle line below contains exactly `TAB + U+00A0`:
+
+```markdown
+	Text above the blank line
+	 
+	Text below the blank line
+```
+
+Separate list types like this:
+
+```markdown
+	1. First ordered item
+	2. Second ordered item
+
+	\
+
+	**A separate list**
+	- First bullet
+	- Second bullet
+```
+
+Do not use the non-breaking-space spacer between lists because it can preserve unwanted list continuity. A standalone backslash is a list-boundary workaround, not a general-purpose way to add vertical space.
+
 ## Creating Presentations
 
 ### Standard Structure

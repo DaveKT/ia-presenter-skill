@@ -37,7 +37,7 @@ size: contain
 The above line is rendering an image called 1_4runner-15000x.png on the slide. The contain modifier is ensuring the full image is rendered in the space provided.
 
 ---
-### Fourth and Final Content Page (Header 3)
+### Fourth Content Page (Header 3)
 	As the documentation suggests, you can use standard markdown to format the text. This is **bold** and this is *italic*.
 
 You can also insert a code block using backticks. You can optionally name the language being used after the first set of backticks.
@@ -47,3 +47,28 @@ Import pandas as pd
 
 print("Hello World!")
 ```
+
+---
+### Fifth Content Page: Line Breaks and Blank Space
+	A backslash at the end of this line creates a line break\
+	inside the same paragraph.
+
+	This text appears above a visually blank slide line.
+	 
+	This text appears below it.
+
+The visually blank slide line above contains exactly an actual tab character followed by an actual U+00A0 non-breaking space. Ordinary empty Markdown lines do not guarantee visible vertical spacing in the HTML view.
+
+---
+### Sixth and Final Content Page: Separate List Types
+	**Ordered List**
+	1. First ordered item
+	2. Second ordered item
+
+	\
+
+	**Unordered List**
+	- First bullet
+	- Second bullet
+
+The tab-prefixed standalone backslash, with an empty line before and after it, prevents the unordered list from continuing the numbering of the ordered list. Do not use a non-breaking-space spacer between consecutive lists.

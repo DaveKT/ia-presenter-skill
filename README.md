@@ -71,6 +71,7 @@ The skill handles these IA Presenter-specific conventions:
 - **Slide Separation**: Uses `---` to separate slides
 - **Content Visibility**: Tab characters make content visible on slides; non-tabbed lines are speaker notes
 - **Side-by-Side Layouts**: Separates tabbed sections with non-tabbed lines
+- **Line and List Spacing**: Distinguishes paragraph line breaks, literal `U+00A0` blank slide lines, and standalone-backslash list separators
 - **Image Paths**: All images use `/assets/` prefix
 - **Cover Slides**: `# Title` and `## Subtitle` format
 
@@ -129,6 +130,10 @@ This skill is provided as-is for use with Claude and IA Presenter.
 
 ## Version History
 
+- **v1.0.1** (2026-09-11): Document line breaks and list spacing
+  - Added literal non-breaking-space guidance for visible blank slide lines
+  - Added a standalone-backslash workaround for separating consecutive lists
+  - Expanded the reference deck with testable spacing examples
 - **v1.0.0** (2024-11-09): Initial release
   - Core IA Presenter markdown generation
   - Tab character handling for content visibility
