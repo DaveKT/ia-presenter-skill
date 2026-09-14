@@ -95,3 +95,28 @@ These are fictional example data.
 chart: pie
 
 These are fictional example data.
+
+---
+### Fifth Content Page: Line Breaks and Blank Space
+	A backslash at the end of this line creates a line break\
+	inside the same paragraph.
+
+	This text appears above a visually blank slide line.
+	 
+	This text appears below it.
+
+The visually blank slide line above contains exactly an actual tab character followed by an actual U+00A0 non-breaking space. Ordinary empty Markdown lines do not guarantee visible vertical spacing in the HTML view.
+
+---
+### Sixth and Final Content Page: Separate List Types
+	**Ordered List**
+	1. First ordered item
+	2. Second ordered item
+
+	\
+
+	**Unordered List**
+	- First bullet
+	- Second bullet
+
+The tab-prefixed standalone backslash, with an empty line before and after it, prevents the unordered list from continuing the numbering of the ordered list. Do not use a non-breaking-space spacer between consecutive lists.
