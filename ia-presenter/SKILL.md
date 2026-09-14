@@ -1,6 +1,6 @@
 ---
 name: ia-presenter
-description: Generate markdown presentations compatible with IA Presenter. Use when the user requests to create an IA Presenter presentation, generate an IA Presenter document, or convert content into an IA Presenter markdown file. Also use when the user asks to create a presentation in markdown format without specifying a tool.
+description: Create or edit Markdown presentations compatible with IA Presenter, including native tables and charts. Use when the user requests an IA Presenter presentation, adds tables or charts to an IA Presenter deck, or converts content into an IA Presenter Markdown file. Also use when the user asks to create a presentation in Markdown format without specifying a tool.
 license: MIT
 metadata:
   version: "1.1.0"
@@ -27,8 +27,9 @@ Use heading levels to control slide hierarchy:
 
 Control what appears on slides using tab characters:
 - Lines starting with a **tab character** appear on the slide
-- Lines without tabs are speaker notes (invisible to audience)
+- Ordinary text paragraphs without tabs are speaker notes (invisible to audience)
 - Headings always appear and don't need tabs
+- Markdown tables and their chart metadata start at the beginning of the line, without tabs; they are not ordinary speaker-note paragraphs
 
 **Critical:** Use actual tab characters (`\t`), not the tab symbol or spaces.
 
@@ -79,6 +80,15 @@ Handle images as follows:
 - If the user provides images, ask what each depicts only when that context is needed for placement
 - If no images are provided, skip image syntax; do not invent image paths
 
+### Tables and Charts
+
+For native tables and charts, read [Tables and Charts](references/tables-and-charts.md) before generating or editing them. Chart support requires iA Presenter 1.6 or later.
+
+- Generate editable Markdown tables with chart metadata directly below the final data row, without indentation or code fences in the output deck.
+- Use tables for exact values, bars for category comparisons, lines for trends, and pies for simple parts of a whole.
+- Preserve supplied labels and values. Clearly identify invented example data as fictional in speaker notes.
+- Use only the documented metadata values and combinations in the reference. Do not invent CSV-block syntax or additional chart options.
+
 ### Formatting
 
 Standard Markdown works within IA Presenter:
@@ -91,14 +101,16 @@ Standard Markdown works within IA Presenter:
 
 ## Output Format
 
-Create a `.md` file containing the IA Presenter formatted content using the host agent's designated output directory or file-writing mechanism. Do not assume a fixed path such as `/mnt/user-data/outputs/`. If the host agent cannot create files, return the complete Markdown content in the response and clearly label it as an IA Presenter Markdown document.
+Create a `.md` file containing the IA Presenter formatted content in the output directory specified by the user. If no output directory is specified, use the host agent's designated file-writing mechanism or current working directory. Do not assume a product-specific path such as `/mnt/user-data/outputs/`. If the host agent cannot create files, return the complete Markdown content in the response and clearly label it as an IA Presenter Markdown document.
 
 Use a short, descriptive filename with the `.md` extension. Preserve actual tab characters wherever IA Presenter requires visible slide content.
 
 ## Reference Example
 
-See `references/Example_IA_Presenter_Deck.md` for a complete working example demonstrating all syntax features.
+See `references/Example_IA_Presenter_Deck.md` for a complete working example demonstrating core syntax, a table, and the three chart types.
 
 ## Additional Resources
 
 Full IA Presenter markdown documentation: https://ia.net/presenter/support/basics/markdown
+
+Tables and charts documentation: https://ia.net/presenter/support/story/tables-and-charts
