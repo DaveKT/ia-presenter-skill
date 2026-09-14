@@ -1,13 +1,18 @@
 ---
 name: ia-presenter
 description: Generate markdown presentations compatible with IA Presenter. Use when the user requests to create an IA Presenter presentation, generate an IA Presenter document, or convert content into an IA Presenter markdown file. Also use when the user asks to create a presentation in markdown format without specifying a tool.
+license: MIT
+metadata:
+  version: "1.1.0"
 ---
 
 # IA Presenter
 
+Create concise, well-structured Markdown presentations that follow IA Presenter's syntax. This is an Agent Skills-compatible skill; use the host agent's available file tools and output conventions rather than assuming a product-specific directory.
+
 ## Overview
 
-This skill generates markdown files formatted for IA Presenter, a presentation tool with specific markdown syntax requirements. IA Presenter uses standard markdown with unique conventions for slide separation, content visibility, and layout control.
+This skill generates Markdown files formatted for IA Presenter, a presentation tool with specific Markdown syntax requirements. IA Presenter uses standard Markdown with unique conventions for slide separation, content visibility, and layout control.
 
 ## Core Syntax Rules
 
@@ -58,7 +63,7 @@ Keep text minimal and impactful:
 
 ### Gathering Information
 
-Before generating, ask clarifying questions:
+Use the information already provided by the user first. Ask clarifying questions only when an answer is needed to produce a useful presentation:
 - Presentation topic and target audience
 - Key messages or objectives
 - Number of slides needed
@@ -71,12 +76,12 @@ Handle images as follows:
 - All image paths start with `/assets/`
 - Example: `/assets/myimage.jpg`
 - Use `size: contain` on the line after the image path to fit the full image
-- If user provides images, ask what each depicts to place appropriately
-- If no images provided, skip image syntax (user will add later)
+- If the user provides images, ask what each depicts only when that context is needed for placement
+- If no images are provided, skip image syntax; do not invent image paths
 
 ### Formatting
 
-Standard markdown works within IA Presenter:
+Standard Markdown works within IA Presenter:
 - `**bold**` for bold text
 - `*italic*` for italic text
 - `[link text](url)` for hyperlinks
@@ -86,7 +91,9 @@ Standard markdown works within IA Presenter:
 
 ## Output Format
 
-Always create a `.md` file in `/mnt/user-data/outputs/` with the IA Presenter formatted content.
+Create a `.md` file containing the IA Presenter formatted content using the host agent's designated output directory or file-writing mechanism. Do not assume a fixed path such as `/mnt/user-data/outputs/`. If the host agent cannot create files, return the complete Markdown content in the response and clearly label it as an IA Presenter Markdown document.
+
+Use a short, descriptive filename with the `.md` extension. Preserve actual tab characters wherever IA Presenter requires visible slide content.
 
 ## Reference Example
 
