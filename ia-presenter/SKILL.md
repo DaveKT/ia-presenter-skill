@@ -1,18 +1,18 @@
 ---
 name: ia-presenter
-description: Create or edit Markdown presentations compatible with IA Presenter, including native tables and charts. Use when the user requests an IA Presenter presentation, adds tables or charts to an IA Presenter deck, or converts content into an IA Presenter Markdown file. Also use when the user asks to create a presentation in Markdown format without specifying a tool.
+description: Create or edit Markdown presentations compatible with iA Presenter, including native tables and charts. Use when the user requests an iA Presenter presentation, adds tables or charts to an iA Presenter deck, or converts content into an iA Presenter Markdown file. Also use when the user asks to create a presentation in Markdown format without specifying a tool.
 license: MIT
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
-# IA Presenter
+# iA Presenter
 
-Create concise, well-structured Markdown presentations that follow IA Presenter's syntax. This is an Agent Skills-compatible skill; use the host agent's available file tools and output conventions rather than assuming a product-specific directory.
+Create concise, well-structured Markdown presentations that follow iA Presenter's syntax. This is an Agent Skills-compatible skill; use the host agent's available file tools and output conventions rather than assuming a product-specific directory.
 
 ## Overview
 
-This skill generates Markdown files formatted for IA Presenter, a presentation tool with specific Markdown syntax requirements. IA Presenter uses standard Markdown with unique conventions for slide separation, content visibility, and layout control.
+This skill generates Markdown files formatted for iA Presenter, a presentation tool with specific Markdown syntax requirements. iA Presenter uses standard Markdown with unique conventions for slide separation, content visibility, and layout control.
 
 ## Core Syntax Rules
 
@@ -122,7 +122,7 @@ For native tables and charts, read [Tables and Charts](references/tables-and-cha
 
 ### Formatting
 
-Standard Markdown works within IA Presenter:
+Standard Markdown works within iA Presenter:
 - `**bold**` for bold text
 - `*italic*` for italic text
 - `[link text](url)` for hyperlinks
@@ -132,9 +132,9 @@ Standard Markdown works within IA Presenter:
 
 ## Output Format
 
-Create a `.md` file containing the IA Presenter formatted content in the output directory specified by the user. If no output directory is specified, use the host agent's designated file-writing mechanism or current working directory. Do not assume a product-specific path such as `/mnt/user-data/outputs/`. If the host agent cannot create files, return the complete Markdown content in the response and clearly label it as an IA Presenter Markdown document.
+Create a `.md` file containing the iA Presenter formatted content in the output directory specified by the user. If no output directory is specified, use the host agent's designated file-writing mechanism or current working directory. Do not assume a product-specific path such as `/mnt/user-data/outputs/`. If the host agent cannot create files, return the complete Markdown content in the response and clearly label it as an iA Presenter Markdown document.
 
-Use a short, descriptive filename with the `.md` extension. Preserve actual tab characters wherever IA Presenter requires visible slide content.
+Use a short, descriptive filename with the `.md` extension. Preserve actual tab characters wherever iA Presenter requires visible slide content.
 
 ## Reference Example
 
@@ -142,6 +142,6 @@ See `references/Example_IA_Presenter_Deck.md` for a complete working example dem
 
 ## Additional Resources
 
-Full IA Presenter markdown documentation: https://ia.net/presenter/support/basics/markdown
+Full iA Presenter Markdown documentation: https://ia.net/presenter/support/basics/markdown
 
 Tables and charts documentation: https://ia.net/presenter/support/story/tables-and-charts
