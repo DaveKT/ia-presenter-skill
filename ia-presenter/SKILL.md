@@ -1,13 +1,18 @@
 ---
 name: ia-presenter
-description: Generate markdown presentations compatible with IA Presenter. Use when the user requests to create an IA Presenter presentation, generate an IA Presenter document, or convert content into an IA Presenter markdown file. Also use when the user asks to create a presentation in markdown format without specifying a tool.
+description: Create or edit Markdown presentations compatible with iA Presenter, including native tables and charts. Use when the user requests an iA Presenter presentation, adds tables or charts to an iA Presenter deck, or converts content into an iA Presenter Markdown file. Also use when the user asks to create a presentation in Markdown format without specifying a tool.
+license: MIT
+metadata:
+  version: "1.2.1"
 ---
 
-# IA Presenter
+# iA Presenter
+
+Create concise, well-structured Markdown presentations that follow iA Presenter's syntax. This is an Agent Skills-compatible skill; use the host agent's available file tools and output conventions rather than assuming a product-specific directory.
 
 ## Overview
 
-This skill generates markdown files formatted for IA Presenter, a presentation tool with specific markdown syntax requirements. IA Presenter uses standard markdown with unique conventions for slide separation, content visibility, and layout control.
+This skill generates Markdown files formatted for iA Presenter, a presentation tool with specific Markdown syntax requirements. iA Presenter uses standard Markdown with unique conventions for slide separation, content visibility, and layout control.
 
 ## Core Syntax Rules
 
@@ -22,8 +27,9 @@ Use heading levels to control slide hierarchy:
 
 Control what appears on slides using tab characters:
 - Lines starting with a **tab character** appear on the slide
-- Lines without tabs are speaker notes (invisible to audience)
+- Ordinary text paragraphs without tabs are speaker notes (invisible to audience)
 - Headings always appear and don't need tabs
+- Markdown tables and their chart metadata start at the beginning of the line, without tabs; they are not ordinary speaker-note paragraphs
 
 **Critical:** Use actual tab characters (`\t`), not the tab symbol or spaces.
 
@@ -37,6 +43,37 @@ Create side-by-side layouts by separating tabbed content with a non-tabbed line:
 ```
 
 Without the separator, content stacks vertically.
+
+### Line Breaks, Blank Slide Lines, and List Separation
+
+Use different syntax for these three cases:
+
+- To insert a line break inside one paragraph, end the preceding line with two spaces or a backslash (`\`). Keep the tab prefix on both lines when the paragraph must appear on the slide.
+- To create a visually blank line outside lists, insert a slide-content line containing exactly an actual tab character (`U+0009`) followed by an actual non-breaking space (`U+00A0`). Ordinary blank Markdown lines collapse in the HTML view and do not guarantee visible vertical space. Use the literal non-breaking space character, never an HTML entity spelling.
+- To separate consecutive lists, use a blank line, a tab-prefixed standalone backslash, and another blank line before the next list. This prevents the HTML view from treating the second list as a continuation of the first.
+
+The visually blank middle line below contains exactly `TAB + U+00A0`:
+
+```markdown
+	Text above the blank line
+	 
+	Text below the blank line
+```
+
+Separate list types like this:
+
+```markdown
+	1. First ordered item
+	2. Second ordered item
+
+	\
+
+	**A separate list**
+	- First bullet
+	- Second bullet
+```
+
+Do not use the non-breaking-space spacer between lists because it can preserve unwanted list continuity. A standalone backslash is a list-boundary workaround, not a general-purpose way to add vertical space.
 
 ## Creating Presentations
 
@@ -58,7 +95,7 @@ Keep text minimal and impactful:
 
 ### Gathering Information
 
-Before generating, ask clarifying questions:
+Use the information already provided by the user first. Ask clarifying questions only when an answer is needed to produce a useful presentation:
 - Presentation topic and target audience
 - Key messages or objectives
 - Number of slides needed
@@ -71,12 +108,21 @@ Handle images as follows:
 - All image paths start with `/assets/`
 - Example: `/assets/myimage.jpg`
 - Use `size: contain` on the line after the image path to fit the full image
-- If user provides images, ask what each depicts to place appropriately
-- If no images provided, skip image syntax (user will add later)
+- If the user provides images, ask what each depicts only when that context is needed for placement
+- If no images are provided, skip image syntax; do not invent image paths
+
+### Tables and Charts
+
+For native tables and charts, read [Tables and Charts](references/tables-and-charts.md) before generating or editing them. Chart support requires iA Presenter 1.6 or later.
+
+- Generate editable Markdown tables with chart metadata directly below the final data row, without indentation or code fences in the output deck.
+- Use tables for exact values, bars for category comparisons, lines for trends, and pies for simple parts of a whole.
+- Preserve supplied labels and values. Clearly identify invented example data as fictional in speaker notes.
+- Use only the documented metadata values and combinations in the reference. Do not invent CSV-block syntax or additional chart options.
 
 ### Formatting
 
-Standard markdown works within IA Presenter:
+Standard Markdown works within iA Presenter:
 - `**bold**` for bold text
 - `*italic*` for italic text
 - `[link text](url)` for hyperlinks
@@ -86,12 +132,16 @@ Standard markdown works within IA Presenter:
 
 ## Output Format
 
-Always create a `.md` file in `/mnt/user-data/outputs/` with the IA Presenter formatted content.
+Create a `.md` file containing the iA Presenter formatted content in the output directory specified by the user. If no output directory is specified, use the host agent's designated file-writing mechanism or current working directory. Do not assume a product-specific path such as `/mnt/user-data/outputs/`. If the host agent cannot create files, return the complete Markdown content in the response and clearly label it as an iA Presenter Markdown document.
+
+Use a short, descriptive filename with the `.md` extension. Preserve actual tab characters wherever iA Presenter requires visible slide content.
 
 ## Reference Example
 
-See `references/Example_IA_Presenter_Deck.md` for a complete working example demonstrating all syntax features.
+See `references/Example_IA_Presenter_Deck.md` for a complete working example demonstrating core syntax, a table, and the three chart types.
 
 ## Additional Resources
 
-Full IA Presenter markdown documentation: https://ia.net/presenter/support/basics/markdown
+Full iA Presenter Markdown documentation: https://ia.net/presenter/support/basics/markdown
+
+Tables and charts documentation: https://ia.net/presenter/support/story/tables-and-charts
